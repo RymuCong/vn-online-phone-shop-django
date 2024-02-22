@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <!-- Swiper slider-->
+    <link rel="stylesheet" href="{% static "css/swiper-bundle.min.css" %}">
+    <!-- Theme stylesheet-->
+    {% comment %} <link rel="stylesheet" href="{% static "css/style.default.css" %}" id="theme-stylesheet"> {% endcomment %}
+  {% endblock %}
+
+{% block content %}
+  <body>
+    <div class="wide" id="all">
+      <section class="bg-pentagon py-4">
+        <div class="container py-3">
+          <div class="row d-flex align-items-center gy-4">
+            <div class="col-md-7">
+              <h1 class="mb-0 text-uppercase">{{ product.title }}</h1>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- SHOP DETAIL SECTION-->
+      <section class="py-5">
+        <div class="container py-4">
+          <div class="row g-5">
+            <div class="col-lg-9">
+              <div class="text-center mb-5"><a class="text-muted text-center small text-uppercase text-decoration-underline" href="#details">Xem tính năng và cấu hình</a></div>
+              <div class="row gy-5 align-items-stretch">
+                <!-- PRODUCTS SLIDER-->
+                
+                <div class="col-lg-6">
+                  <div class="swiper-container shop-detail-slider">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide"><img class="img-fluid" src="{{ product.image.url }}" alt="..."></div>
+                      {% if related_images %}
+                        {% for item in related_images %}
+                          <div class="swiper-slide"><img class="img-fluid" src="/media/{{ item.image }}" alt="..."></div>
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+                <!-- FPRODUCT INFO-->
+                <div class="col-lg-6 d-flex flex-column justify-content-between">
+                  <div class="p-4 p-lg-5 border mb-5 bg-light">
+                    <form method="post" action="{% url 'cart:add_to_cart' product.id %}">
+                       <p class="h1 text-muted mb-4 text-center fw-normal">${{ product.price }}</p>
+                      {% csrf_token %}
+                      <h3 class="text-center mb-3">Số lượng: </h3>
+                      <p>{{ form }}</p>
+                      <p class="text-center">
+                        <button class="btn btn-outline-primary" type="submit"><i class="fas fa-shopping-cart"></i>Thêm vào giỏ</button>
+                        {% if favorites == 'remove' %}
+                        <a href="{% url 'shop:remove_from_favorites' product.id %}" class="btn btn-secondary"><i class="fa fa-heart"></i></a>
+                        {% else %}
+                        <a href="{% url 'shop:add_to_favorites' product.id %}" class="btn btn-secondary"><i class="fa fa-heart"></i></a>
+                        {% endif %}
+                      </p>
+                    </form>
+                  </div>
+                  <!-- SLIDERS THUMBS -->
+                  <div class="swiper-container shop-detail-slider-thumbs w-100">
+                    <div class="swiper-wrapper">
+                      {% if related_images %}
+                      <div class="swiper-slide swiper-slide-thumb flex-fill"><img class="img-fluid" src="{{ product.image.url }}" alt="..."></div>
+                        {% for item in related_images %}
+                          <div class="swiper-slide swiper-slide-thumb flex-fill"><img class="img-fluid" src="/media/{{ item.image }}" alt="..."></div>
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- PRODUCT INFO-->
+              <div id="details">
+                <div class="border-top border-bottom py-4 px-0 px-lg-4 my-5">
+                  <h2 class="h1 mb-4 text-center fw-normal">Mô tả sản phẩm</h2>
+                  <p>{{ product.description | safe}}</p> 
+                  <figure class="p-4 bg-light border-start border-4 border-primary">
+                    <h3>               
+                    <figcaption class="blockquote-footer mb-0">Tin chuẩn tại 
+                      <cite title="Source Title">{{ product.category }}</cite>
+                    </figcaption>
+                    </h3>
+                  </figure>
+                </div>
+                <!-- SOCIAL SHARE ITEM-->
+                <div class="py-4 border-top border-bottom text-center mb-5">
+                  <h4 class="fw-light mb-3">Chia sẻ sản phẩm</h4>
+                  <ul class="list-inline mb-0">
+                    <li class="list-inline-item"><a class="social-link facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="list-inline-item"><a class="social-link twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a class="social-link youtube" href="#"><i class="fab fa-youtube"></i></a></li>
+                    <li class="list-inline-item"><a class="social-link email" href="#"><i class="fas fa-envelope"></i></a></li>
+                  </ul>
+                </div>
+                <!-- SIMILAR PRODUCTS-->
+                <div class="row gy-4 mb-5">
+                  <div class="col-lg-3 col-md-6">
+                    <div class="py-6 px-0 px-lg-4 border-top border-bottom">
+                      <h3 class="text-uppercase mb-0">Sản phẩm liên quan</h3>
+                    </div>
+                  </div>
+                  {% for p in related_products %}
+                      <!-- dont show the current product in this page -->
+                      <!-- Product-->
+                      {% if p != product %}
+                        <div class="col-lg-3 col-md-6">
+                          <div class="product h-100">
+                            {% comment %} <a href="{{ p.get_absolute_url }}"><img class="img-fluid" width="268" height="200" src="{{ p.image.url }}" alt=""></a></div> {% endcomment %}
+                            <div class="product-image">
+                              <a href="{{ p.get_absolute_url }}"><img style="object-fit: contain;" class="card-img mt-2" width="268" height="200" src="{{ p.image.url }}" alt=""></a>
+                            </div>
+                            <div class="py-4 px-3 text-center">
+                              <h3 class="h5 text-uppercase mb-3"><a class="reset-link" href="{{ p.get_absolute_url }}">{{ p.title }}</a></h3>
+                              <p class="mb-0">${{ p.price }}
+                              </p>
+                            </div>
+                            <ul class="list-unstyled p-0 ribbon-holder mb-0">
+                            </ul>
+                          </div>
+                        </div>
+                      {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+                 <!-- CHECKOUT SIDEBAR [ORDER SUMMARY]                                        -->
+            <div class="col-lg-3">
+              <!-- Categories-->
+              <h3 class="h4 lined text-uppercase mb-4">Nhãn hàng</h3>
+              <ul class="nav flex-column nav-pills mb-4">
+                  {% for category in categories %}
+                    <!-- check if category is parent -->
+                      {% if not category.is_sub %}
+                      <!-- parent -->
+                        <li class="nav-item mb-2"><a href="{% url 'shop:filter_by_category' category.slug %}" class="nav-link">
+                          <div class="d-flex align-items-center justify-content-between"><span class="text-uppercase">{{ category }}</span>
+                          </div>
+                        </a></li>
+                        {% for child in category.sub_categories.all %}
+                        <!-- child -->
+                        <li class="nav-item mb-2"><a href="{% url 'shop:filter_by_category' child.slug %}" class="nav-link">
+                          <div class="d-flex align-items-center justify-content-between"><span class="text-uppercase">{{ child }}</span>
+                          </div>
+                        </a></li>
+                        {% endfor %}
+                      {% endif %} 
+                  {% endfor %}
+                {% comment %} <li class="nav-item mb-2"><a class="nav-link" href=""> 
+                    <div class="d-flex align-items-center justify-content-between"><span class="text-uppercase">Flagship</span>
+                      <div class="badge bg-secondary">42</div>
+                    </div></a>
+                </li>
+                <li class="nav-item mb-2"><a class="nav-link active" href=""> 
+                    <div class="d-flex align-items-center justify-content-between"><span class="text-uppercase">Smartphone</span>
+                      <div class="badge bg-white text-primary">123</div>
+                    </div></a>
+                </li>
+                <li class="nav-item mb-2"><a class="nav-link" href=""> 
+                    <div class="d-flex align-items-center justify-content-between"><span class="text-uppercase">Khác</span>
+                      <div class="badge bg-secondary">11</div>
+                    </div></a>
+                </li> {% endcomment %}
+              </ul>
+              <!-- Brands        -->
+              {% comment %} <div class="d-flex align-items-center justify-content-between mb-3">
+                <h3 class="h4 lined text-uppercase">Brands</h3>
+                <button class="btn btn-sm btn-danger" type="button"><i class="fas fa-times-circle me-2"></i>Clear</button>
+              </div>
+              <form class="mb-4" action="#">
+                <div class="form-check">
+                  <input class="form-check-input" id="armani" type="checkbox">
+                  <label class="ps-2 form-check-label" for="armani">Armani (10)</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" id="versace" type="checkbox">
+                  <label class="ps-2 form-check-label" for="versace">Versace (12)</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" id="carloBruni" type="checkbox">
+                  <label class="ps-2 form-check-label" for="carloBruni">Carlo Bruni (15)</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" id="jackHoney" type="checkbox">
+                  <label class="ps-2 form-check-label" for="jackHoney">Jack Honey (14)</label>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-3" type="button"><i class="fas fa-pencil-alt me-2"></i>Apply</button>
+              </form> {% endcomment %}
+              <!-- Colors-->
+              {% comment %} <div class="d-flex align-items-center justify-content-between mb-3">
+                <h3 class="h4 lined text-uppercase">Colors</h3>
+                <button class="btn btn-sm btn-danger" type="button"><i class="fas fa-times-circle me-2"></i>Clear</button>
+              </div>
+              <form class="mb-4" action="#">
+                <div class="form-check">
+                  <input class="form-check-input" id="colorWhite" type="checkbox">
+                  <label class="ps-2 form-check-label d-flex align-items-center" for="colorWhite"> <span class="color-box me-2 bg-white"></span><span>White</span></label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" id="colorBlue" type="checkbox">
+                  <label class="ps-2 form-check-label d-flex align-items-center" for="colorBlue"> <span class="color-box me-2 bg-info"></span><span>Blue</span></label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" id="colorGreen" type="checkbox">
+                  <label class="ps-2 form-check-label d-flex align-items-center" for="colorGreen"> <span class="color-box me-2 bg-success"></span><span>Green</span></label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" id="colorYellow" type="checkbox">
+                  <label class="ps-2 form-check-label d-flex align-items-center" for="colorYellow"> <span class="color-box me-2 bg-warning"></span><span>Yellow</span></label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" id="colorRed" type="checkbox">
+                  <label class="ps-2 form-check-label d-flex align-items-center" for="colorRed"> <span class="color-box me-2 bg-danger"></span><span>Red</span></label>
+                </div>
+                <button class="btn btn-sm btn-outline-primary mt-3" type="button"><i class="fas fa-pencil-alt me-2"></i>Apply</button>
+              </form><a class="d-inline-block" href="#"><img class="img-fluid" src="img/banner.jpg" alt=""></a>
+            </div> {% endcomment %}
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <!-- JavaScript files-->
+    {% comment %} <script src={% static "js/bootstrap.bundle.js" %}></script> {% endcomment %}
+    <script src={% static "js/noframework.waypoints.js" %}></script>
+    <script src={% static "js/swiper-bundle.min.js" %}></script>
+    <script src={% static "js/theme.js" %}></script>
+    <script>
+      // ------------------------------------------------------- //
+      //   Inject SVG Sprite - 
+      //   see more here 
+      //   https://css-tricks.com/ajaxing-svg-sprite/
+      // ------------------------------------------------------ //
+      function injectSvgSprite(path) {
+      
+          var ajax = new XMLHttpRequest();
+          ajax.open("GET", path, true);
+          ajax.send();
+          ajax.onload = function(e) {
+          var div = document.createElement("div");
+          div.className = 'd-none';
+          div.innerHTML = ajax.responseText;
+          document.body.insertBefore(div, document.body.childNodes[0]);
+          }
+      }
+      // this is set to BootstrapTemple website as you cannot 
+      // inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
+      // while using file:// protocol
+      // pls don't forget to change to your domain :)
+      injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
+      
+    </script>
+    <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  </body>
+{% endblock %}

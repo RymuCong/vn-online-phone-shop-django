@@ -1,0 +1,30 @@
+{% extends "dashboard.html" %}
+{% block content %}
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tên Khách Hàng</th>
+        <th scope="col">Tiêu đề</th>
+        <th scope="col">Email</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    {% for feedback in feedbacks %}
+    <tbody>
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ feedback.customer_name }}</td>
+        <td>{{ feedback.title }}</td>
+        <td>{{ feedback.email }}</td>
+        <td><a href="{% url 'dashboard:feedback_detail' feedback.id %}" class="text-primary text-decoration-none">Detail</a></td>
+        <td><a class="text-danger text-decoration-none" href="{% url 'dashboard:delete_feedback' feedback.id %}">Xóa</a></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+  
+
+{% endblock %}
+

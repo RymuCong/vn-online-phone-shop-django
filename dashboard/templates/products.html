@@ -1,0 +1,33 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+
+<table class="table table-striped ">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Phân Loại</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    {% for product in products %}
+    <tbody>
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td><a class="text-decoration-none" href="{{ product.get_absolute_url }}">{{ product.title }}</a></td>
+        <td>${{ product.price }}</td>
+        <td>{{ product.category }}</td>
+        {% comment %} <td>{{ product.date_created|date:"M d" }}</td> {% endcomment %}
+        <td>{{ product.quantity }}</td>
+        <td><a class="text-danger text-decoration-none" href="{% url 'dashboard:delete_product' product.id %}">Xóa</a></td>
+        <td><a class="text-info text-decoration-none" href="{% url 'dashboard:edit_product' product.id %}">Sửa</a></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
+{% endblock %}

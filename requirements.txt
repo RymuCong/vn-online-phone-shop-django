@@ -1,0 +1,15 @@
+asgiref==3.7.2
+backports.zoneinfo==0.2.12
+Django==4.2.3
+django-crispy-forms==1.14.0
+Pillow==9.0.0
+sqlparse==0.4.2
+
+# asgiref: 
+# backports.zoneinfo: 0.2.12
+# Django: 4.2.53
+# django-crispy-forms: 2.04
+# Pillow: 10.0.15
+# sqlparse: 0.4.46
+
+#crispy-bootstrap4

@@ -1,0 +1,12 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+{% for item in feedback  %}
+<div class="bg-light rounded border-bottom p-3">
+    <p>Tên khách hàng: {{item.customer_name}}</p>
+    <p>Email: {{item.email}}</p>
+    <p>Tiêu đề: {{item.title}}</p>
+    <p>Nội dung: {{item.comment}}</p>
+</div>
+{% endfor %}
+{% endblock %}

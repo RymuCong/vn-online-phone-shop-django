@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.2/components/logins/login-8/assets/css/login-8.css" />
+
+{% endblock %}
+{% block extend_page %}
+    <!-- Login 8 - Bootstrap Brain Component -->
+    <section class="bg-light p-3 p-md-4 p-xl-5">
+        <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xxl-11">
+            <div class="card border-light-subtle shadow-sm">
+                <div class="row g-0">
+                <div class="col-12 col-md-6">
+                    <img class="img-fluid rounded-start w-100 h-100 object-fit-contain" loading="lazy" src="{% static "images/iphone-15-promax.png" %}" alt="Welcome back you've been missed!">
+                </div>
+                <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                    <div class="col-12 col-lg-11 col-xl-10">
+                    <div class="card-body p-3 p-md-4 p-xl-5">
+                        <div class="row">
+                        <div class="col-12">
+                            <div class="mb-5">
+                            <div class="text-center mb-4">
+                                <a href="#!">
+                                <img src="{% static "images/fevicon.png" %}" alt="BootstrapBrain Logo" width="auto" height="60">
+                                </a>
+                            </div>
+                            <h3 class="text-center">Đăng ký</h3>
+                            </div>
+                        </div>
+                        </div>
+                        <form method="POST">
+                            {% csrf_token %}
+                        <div class="row gy-3 overflow-hidden">
+                            <div class="col-12">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required>
+                                <label for="email" class="form-label">Email</label>
+                            </div>
+                            </div>
+                            <div class="col-12">
+                            <div class="form-floating mb-3">
+                                <input type="full_name" class="form-control" name="full_name" id="full_name" value="" placeholder="Họ và tên" required>
+                                <label for="full_name" class="form-label">Họ và tên</label>
+                            </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required>
+                                    <label for="password" class="form-label">Mật khẩu</label>
+                                </div>
+                                </div>
+                            <div class="col-12">
+                            <div class="d-grid">
+                                <button style="color: #fff" class="btn btn-dark btn-outline-primary" type="submit">Tạo tài khoản</button>
+                            </div>
+                            </div>
+                        </div>
+                        </form>
+                        <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-5">
+                                <a href="{% url 'accounts:user_login' %}" class="link-secondary text-decoration-none">Đã có tài khoản</a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}
+

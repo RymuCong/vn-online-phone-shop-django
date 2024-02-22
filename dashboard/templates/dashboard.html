@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap_dashboard.css' %}" />
+    <script src="{% static 'js/bootstrap_dashboard.js' %}"></script>
+    {% block script %}{% endblock %}
+    <title>{{title}}</title>
+</head>
+<body>
+    <div class="row mt-5">
+        <div class="col-md-1"></div>
+        <!-- content -->
+        <div class="col-md-7">
+            <h2 class="border-bottom text-capitalize">{{ title }}</h2>
+            <div class="p-4">
+                <!-- messages -->
+                {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+                {% endif %}
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+        <!-- sidebar -->
+        <div class="col-md-3 border-start">
+            <h3 class="text-muted">Menu</h3>
+            <a class="text-decoration-none" href="{% url 'dashboard:products' %}">
+                <li class="rounded list-group-item  text-primary">Sản phẩm</li>
+            </a>
+            <a class="text-decoration-none" href="{% url 'dashboard:category' %}">
+                <li class="rounded list-group-item mt-2  text-primary">Nhãn hàng</li>
+            </a>
+            <a class="text-decoration-none" href="{% url 'dashboard:add_product' %}">
+                <li class="rounded list-group-item mt-2 text-primary">Thêm sản phẩm mới</li>
+            </a>
+            <a class="text-decoration-none" href="{% url 'dashboard:add_category' %}">
+                <li class="rounded list-group-item mt-2  text-primary">Thêm nhãn hàng mới</li>
+            </a>
+            <a class="text-decoration-none" href="{% url 'dashboard:orders' %}">
+                <li class="rounded list-group-item mt-2  text-primary">Đơn hàng</li>
+            </a>
+            <a class="text-decoration-none" href="{% url 'dashboard:feedback' %}">
+                <li class="rounded list-group-item mt-2  text-primary">Góp ý</li>
+            </a>
+            <hr>
+            <a class="text-decoration-none" href="{% url 'shop:home_page' %}">
+                <li class="rounded list-group-item bg-primary mt-2  text-white">Quay lại shop</li>
+            </a>
+            <a class="text-decoration-none" href="{% url 'accounts:user_logout' %}">
+                <li class="rounded list-group-item bg-danger mt-2  text-white">Đăng xuất</li>
+            </a>
+            <div class="text-muted mt-2">Bạn đang đăng nhập với: {{ request.user.email }}</div>
+        </div>
+        <div class="col-md-1 "></div>
+    </div>
+</body>
+</html>

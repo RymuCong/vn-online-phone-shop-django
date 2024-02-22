@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static "css/about.css" %}">
+
+{% endblock %}
+
+{% block extend_page %}
+    
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+
+    <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading about-page-heading" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Về chúng tôi</h2>
+                        <span>Nhanh gọn, tiện lợi, đơn giản &amp; dễ dàng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+    <!-- ***** About Area Starts ***** -->
+    <div class="about-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="left-image">
+                        <img src="{% static "images/about-img.jpg" %}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="right-content">
+                        <h4>Về cửa hàng của chúng tôi</h4>
+                        <span> Trong thời kỳ 4.0, internet ngày càng phát triển cùng với đó nhu cầu nó ngày càng tăng lên một cách rõ rệt.
+                            Hiện nay mọi người thường phải chăm sóc gia đình , tập chung vào công việc của mình nên đa số mọi người thường không có thời gian để ra ngoài mua sắm cho bản thân mình.<br>
+                            <br><h6 style="color: black">- Vậy tại sao chúng ta phải mua hàng trực tuyến ?</h6></span>
+                        <div class="quote">
+                            <i class="fa fa-quote-left"></i><p>Mua sắm online cho phép mua hàng bất cứ khi nào bạn muốn và Website bán hàng của chúng tôi không bao giờ đóng cửa, có thể mua sắm 24/7.</p>
+                        </div>
+                        <p>Với mua sắm trực tuyến (online), chúng tôi bạn sẽ được cung cấp thông tin sản phẩm chính xác nhất, online 24/24 sẵn sàng hỗ trợ cho bạn...
+                            Chỉ cần 1 cú click chuột thì bạn sẽ có được sản phẩm mà mình mong muốn.
+                            Sau khi vào website bán hàng, chọn sản phẩm, chỉ cần đặt hàng (order) người bán sẽ mang sản phẩm đến tận nhà bạn.</p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** About Area Ends ***** -->
+
+    <!-- ***** Our Team Area Starts ***** -->
+    <section class="our-team">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>Về đội ngũ của chúng tôi</h2>
+                        <span>Thông tin chi tiết về thành viên trong Shop</span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="team-item">
+                        <div class="thumb">
+                            <div class="hover-effect">
+                                <div class="inner-content">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <img src="{% static "images/team-member-01.jpg" %}">
+                        </div>
+                        <div class="down-content">
+                            <h4>Phạm Thành Công</h4>
+                            <span>Chủ shop</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="team-item">
+                        <div class="thumb">
+                            <div class="hover-effect">
+                                <div class="inner-content">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <img src="{% static "images/team-member-02.jpg" %}">
+                        </div>
+                        <div class="down-content">
+                            <h4>Phạm Thành Công</h4>
+                            <span>Chủ shop</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="team-item">
+                        <div class="thumb">
+                            <div class="hover-effect">
+                                <div class="inner-content">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <img src="{% static "images/team-member-03.jpg" %}">
+                        </div>
+                        <div class="down-content">
+                            <h4>Phạm Thành Công</h4>
+                            <span>Chủ shop</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Our Team Area Ends ***** -->
+
+    <!-- ***** Services Area Starts ***** -->
+    <section class="our-services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>Dịch vụ chúng tôi cung cấp</h2>
+                        <span>Thông tin chi tiết về sản phẩm và dịch vụ của chúng tôi</span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="service-item">
+                        <h4>Sản phẩm giá tốt</h4>
+                        <p>Giá tốt nhất thị trường với những sản phẩm chất lượng và đảm bảo cùng những chính sách bảo hành ưu đãi.</p>
+                        <img src="{% static "images/service-01.jpg" %}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="service-item">
+                        <h4>Mua sắm nhanh chóng</h4>
+                        <p>Bạn có thể mua sản phẩm vô cùng tiện lợi, dễ dàng, nhanh chóng chỉ trong vài phút và có được sản phẩm trong vài giờ.</p>
+                        <img src="{% static "images/service-02.jpg" %}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="service-item">
+                        <h4>Tri ân cho khách hàng</h4>
+                        <p>Chúng tôi luôn có phần quả đặc biệt và lời cảm ơn chân thành nhất đến từ đội ngũ vận hành dành cho khách hàng.</p>
+                        <img src="{% static "images/service-03.jpg" %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Services Area Ends ***** -->
+
+{% endblock %}
+
+{% block script %}
+    <!-- Plugins -->
+    <script src="{% static "js/owl-carousel.js" %}"></script>
+    <script src="{% static "js/scrollreveal.min.js" %}"></script> 
+    
+    <script>
+
+        $(function() {
+            var selectedClass = "";
+            $("p").click(function(){
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("."+selectedClass).fadeOut();
+            setTimeout(function() {
+              $("."+selectedClass).fadeIn();
+              $("#portfolio").fadeTo(50, 1);
+            }, 500);
+                
+            });
+        });
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,361 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block slider %}
+<!-- slider section -->
+<section class="slider_section ">
+  <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="container ">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="detail-box">
+                <h1>
+                  Iphone 15 Pro Max
+                </h1>
+                <h3>
+                  Titan đẳng cấp Pro
+                </h3>
+                <a href="/iphone-15-pro-max">
+                  Xem thêm
+                </a>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="img-box">
+                <img height='400' class="object-fit-contain" src="{% static 'images/Iphone-15-promax.png' %}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="container ">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="detail-box">
+                <h1>
+                  Samsung Galaxy Z Flip 5
+                </h1>
+                <h3>
+                  Thiết kế thời thượng, cấu hình vượt trội
+                </h3>
+                <a href="">
+                  Xem thêm
+                </a>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="img-box">
+                <img height='400' class="object-fit-contain" src="{% static 'images/zflip_5.jpeg' %}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="container ">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="detail-box">
+                <h1>
+                  Xiaomi 12s Pro
+                </h1>
+                <h3>
+                  Sản phẩm giá rẻ, tính năng độc đáo, hiệu năng mạnh mẽ.
+                </h3>
+                <a href="/ien-thoai-xiaomi-12s-pro">
+                  Xem thêm
+                </a>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="img-box">
+                <img height='400' class="object-fit-contain" src="{% static 'images/xiaomi-12s-pro.webp' %}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel1" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Trước</span>
+    </button> 
+    <button class="carousel-control-next" type="button" data-bs-target="#customCarousel1" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Sau</span>
+    </button>
+  </div>
+</section>
+<!-- end slider section -->
+</div>
+{% endblock %}
+
+{% block content %}
+
+<section class="product_section layout_padding">
+<div class="container">
+  <div class="heading_container heading_center">
+    <h2>
+      Sản phẩm mới nhất
+    </h2>
+  </div>
+  <div class="row">
+    {% if products %}
+    {% for product in products.object_list %}
+    <div class="col-sm-6 col-lg-4">
+      <div class="box">
+        <div class="img-box">
+        <img style="object-fit: contain;" class="card-img mt-2" width="268" height="200" src="{{ product.image.url }}" alt="">
+        <a href="{{ product.get_absolute_url }}" class="add_cart_btn">
+          <span>
+            Mua ngay
+          </span>
+        </a>
+      </div>
+        <div class="detail-box">
+          <h5 class="card-title"><a style="color: black" href = "{{ product.get_absolute_url }}">{{ product.title }}</a></h5>
+          <div class="product_info">
+            <h5 class="text-muted">
+              <span>$</span> {{ product.price }}
+            </h5>
+           <a style="font-size: 36px; margin-top: -20px; margin-right: 30px" href="{% url 'shop:add_to_favorites' product.id %}"> <i class="fa fa-heart"></i></a>
+            {% comment %} <div class="star_container">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </div> {% endcomment %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <!-- pagination -->
+    {% else %}
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 mt-5 pt-5 text-center">
+          <br>
+          <h3 class="text-muted text-capitalize">Không tồn tại..!</h3>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    {% endif %}
+
+</div>
+  <div class="btn_box">
+    <a href="{% url 'shop:product' %}" class="view_more-link">
+      Xem thêm
+    </a>
+  </div>
+
+</section>
+
+<!-- end product section -->
+{% endblock %}
+<!-- about section -->
+{% block other_section %}
+<section class="about_section">
+<div class="container-fluid  ">
+  <div class="row">
+    <div class="col-md-5 ml-auto">
+      <div class="detail-box pr-md-3">
+        <div class="heading_container">
+          <h2>
+            Luôn cung cấp sản phẩm tốt nhất
+          </h2>
+        </div>
+        <p>
+          Bạn là người có tiền? Bạn muốn mua sản phẩm mà bạn mong muốn? Vậy thì đến với Shop của chúng tôi sẽ đáp ứng được tất cả các nhu cầu của bạn.
+          Chúng tôi thiết kế website để khách hàng có thể nắm được các thông tin mới nhất về sản phẩm mà mình quan tâm.
+          Thấu hiểu được nhu cầu và cảm nhận được những yêu cầu của khách hàng khi mua hàng trực tuyến.
+          Chúng tôi cam đoan sẽ đem đến cho các quí khách hàng có những sản phẩm và trải nhiệm tốt nhất.
+        </p>
+        <a href="{% url 'shop:about_us' %}">
+          Read More
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 px-0">
+      <div class="img-box">
+        <img src="{% static 'images/about-img.jpg' %}" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- end about section -->
+
+<!-- why us section -->
+
+<section class="why_us_section layout_padding">
+<div class="container">
+  <div class="heading_container heading_center">
+    <h2>
+      Dịch vụ của chúng tôi
+    </h2>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="box ">
+        <div class="img-box">
+          <img src="{% static 'images/w1.png' %}" alt="">
+        </div>
+        <div class="detail-box">
+          <h5>
+            Vận chuyển hỏa tốc
+          </h5>
+          <p>
+            Cung cấp sản phẩm nhanh nhất trong vài giờ.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="box ">
+        <div class="img-box">
+          <img src="{% static 'images/w2.png' %}" alt="">
+        </div>
+        <div class="detail-box">
+          <h5>
+            Free Shiping
+          </h5>
+          <p>
+            Miễn phí vận chuyển từ đơn hàng trên 100$.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="box ">
+        <div class="img-box">
+          <img src="{% static 'images/w3.png' %}" alt="">
+        </div>
+        <div class="detail-box">
+          <h5>
+            Chất lượng tốt nhất
+          </h5>
+          <p>
+            Luôn cam kết sản phẩm chất lượng và bảo hành ưu đãi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- end why us section -->
+
+
+<!-- client section -->
+
+<section class="client_section layout_padding-bottom">
+<div class="container">
+  <div class="heading_container heading_center">
+    <h2>
+      Những đánh giá của khách hàng
+    </h2>
+  </div>
+</div>
+<div class="client_container ">
+  <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      {% if feedback_first %}
+      <div class="carousel-item active">
+        <div class="container">
+          <div class="box">
+            <div class="detail-box">
+              <p>
+                <i class="fa fa-quote-left" aria-hidden="true"></i>
+              </p>
+              <p>
+                {{feedback_first.comment}}
+              </p>
+            </div>
+            <div class="client-id">
+              <div class="img-box">
+                <img src="{% static 'images/shop_lead.png' %}" alt="">
+              </div>
+              <div class="name">
+                <h5>
+                  {{feedback_first.customer_name}}
+                </h5>
+                <h6>
+                  {{feedback_first.title}}
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% if feedbacks %}
+      {% for feedback in feedbacks %}
+      <div class="carousel-item">
+        <div class="container">
+          <div class="box">
+            <div class="detail-box">
+              <p>
+                <i class="fa fa-quote-left" aria-hidden="true"></i>
+              </p>
+              <p id="limit_80">
+                {{feedback.comment}}
+              </p>
+            </div>
+            <div class="client-id">
+              <div class="img-box">
+                <img src="{% static 'images/client.jpg' %}" alt="">
+              </div>
+              <div class="name">
+                <h5>
+                  {{feedback.customer_name}}
+                </h5>
+                <h6>
+                  {{feedback.title}}
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+    <div class="carousel_btn-box">
+      <button class="carousel-control-prev" data-bs-target="#carouselExample2Controls" type="button" data-bs-slide="prev">
+        <span>
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </span>
+        <span class="sr-only">Previous</span>
+      </button>
+      <button class="carousel-control-next" data-bs-target="#carouselExample2Controls" type="button" data-bs-slide="next">
+        <span>
+          <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </span>
+        <span class="sr-only">Next</span>
+      </button>
+    </div>
+  </div>
+</div>
+</section>
+<!-- end client section -->
+
+{% endblock %}
+
+{% block script %}
+  <script>
+    var para = document.getElementById("limit_80");
+    var words = para.innerHTML.split(' ');
+    if (words.length > 80) {
+        words.length = 80;  // Truncate array to first 80 words
+    }
+    para.innerHTML = words.join(' ');
+  </script>
+{% endblock %}

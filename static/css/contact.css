@@ -1,0 +1,265 @@
+/*--------------------------- Color variations ----------------------*/
+
+/* Medium Layout: 1280px */
+/* Tablet Layout: 768px */
+/* Mobile Layout: 320px */
+/* Wide Mobile Layout: 480px */
+/* Section Gaps css
+============================================================================================ */
+.no-padding {
+  padding: 0; }
+
+.section_gap {
+  padding: 100px 0; }
+  @media (max-width: 991px) {
+    .section_gap {
+      padding: 80px 0; } }
+
+.section_gap_top_75 {
+  padding: 75px 0; }
+  @media (max-width: 991px) {
+    .section_gap_top_75 {
+      padding: 70px 0; } }
+
+.section_gap_75 {
+  padding: 75px 0; }
+  @media (max-width: 991px) {
+    .section_gap_75 {
+      padding: 70px 0; } }
+
+.section_gap_top {
+  padding-top: 100px; }
+  @media (max-width: 991px) {
+    .section_gap_top {
+      padding-top: 80px; } }
+
+.section_gap_bottom {
+  padding-bottom: 100px; }
+  @media (max-width: 991px) {
+    .section_gap_bottom {
+      padding-bottom: 80px; } }
+
+.gray-bg {
+  background: #f9f9ff; }
+
+/* Section title css
+============================================================================================ */
+.section-title {
+  margin-bottom: 50px; }
+  .section-title h1 {
+    font-size: 36px; }
+  .section-title p {
+    margin-bottom: 0; }
+
+/* Start Gradient Area css
+============================================================================================ */
+.gradient-bg, .primary-btn, .add-bag .add-btn, .single-product .product-details .prd-bottom .social-info span:after, .grid-btn:hover, .list-btn:hover, .grid-btn.active, .list-btn.active, .pagination a.active, .pagination a:hover, .s_Product_carousel .owl-dots div.active, .s_product_text .card_area .icon_btn:after, .product_description_area .nav.nav-tabs li a.active, .blog-pagination .page-item.active .page-link, .single-footer-widget .click-btn {
+  background: -webkit-linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
+  background: -moz-linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
+  background: -o-linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
+  background: linear-gradient(90deg, #ffba00 0%, #ff6c00 100%); }
+
+.gradient-bg-reverse, #search_input_box {
+  background: -webkit-linear-gradient(270deg, #ffba00 0%, #ff6c00 100%);
+  background: -moz-linear-gradient(270deg, #ffba00 0%, #ff6c00 100%);
+  background: -o-linear-gradient(270deg, #ffba00 0%, #ff6c00 100%);
+  background: linear-gradient(270deg, #ffba00 0%, #ff6c00 100%); }
+
+.gradient-color, .s_product_text h2, .s_product_text .list li a.active, .product_description_area .tab-content .total_rate .box_total h4, .single-footer-widget .bb-btn {
+  background: -webkit-linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
+  background: -moz-linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
+  background: -o-linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
+  background: linear-gradient(90deg, #ffba00 0%, #ff6c00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
+
+/* Start primary btn css
+============================================================================================ */
+.primary-btn {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  padding: 0 30px;
+  line-height: 50px;
+  border-radius: 50px;
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s; }
+  .primary-btn:before {
+    position: absolute;
+    left: -145px;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    content: "";
+    background: #000;
+    opacity: 0;
+    -webkit-transform: skew(40deg);
+    -moz-transform: skew(40deg);
+    -ms-transform: skew(40deg);
+    -o-transform: skew(40deg);
+    transform: skew(40deg);
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s; }
+  .primary-btn:hover {
+    color: #fff; }
+    .primary-btn:hover:before {
+      left: 180px;
+      opacity: .3; }
+
+
+html,
+body {
+  height: 100%; }
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.list {
+  list-style: none;
+  margin: 0px;
+  padding: 0px; }
+
+a {
+  text-decoration: none;
+  transition: all 0.3s ease-in-out; }
+  a:hover, a:focus {
+    text-decoration: none;
+    outline: none; }
+
+button:focus {
+  outline: none;
+  box-shadow: none; }
+
+.overflow-hidden {
+  overflow: hidden; }
+
+.sample-text-area {
+  background: #fff;
+  padding: 100px 0 70px 0; }
+
+.text-heading {
+  margin-bottom: 30px;
+  font-size: 24px; }
+
+b, sup, sub, u, del {
+  color: #ffba00; }
+
+h2 {
+  font-size: 30px; }
+
+h6 {
+  font-size: 14px; }
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.5em; }
+
+/*============== contact_area css ================*/
+.mapBox {
+  height: 420px;
+  margin-top: 80px;
+  margin-bottom: 100px; }
+
+.contact_info .info_item {
+  position: relative;
+  padding-left: 45px; }
+  .contact_info .info_item i {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 20px;
+    line-height: 24px;
+    color: #ffba00;
+    font-weight: 600; }
+  .contact_info .info_item h6 {
+    font-size: 16px;
+    line-height: 24px;
+    color: "Roboto", sans-serif;
+    font-weight: bold;
+    margin-bottom: 0px;
+    color: #222222; }
+    .contact_info .info_item h6 a {
+      color: #222222; }
+  .contact_info .info_item p {
+    font-size: 14px;
+    line-height: 24px;
+    padding: 2px 0px; }
+
+.contact_form .form-group {
+  margin-bottom: 10px; }
+  .contact_form .form-group .form-control {
+    font-size: 13px;
+    line-height: 26px;
+    color: #999;
+    border: 1px solid #eeeeee;
+    font-family: "Roboto", sans-serif;
+    border-radius: 0px;
+    padding-left: 20px; }
+    .contact_form .form-group .form-control:focus {
+      box-shadow: none;
+      outline: none; }
+    .contact_form .form-group .form-control.placeholder {
+      color: #999; }
+    .contact_form .form-group .form-control:-moz-placeholder {
+      color: #999; }
+    .contact_form .form-group .form-control::-moz-placeholder {
+      color: #999; }
+    .contact_form .form-group .form-control::-webkit-input-placeholder {
+      color: #999; }
+  .contact_form .form-group textarea {
+    resize: none; }
+    .contact_form .form-group textarea.form-control {
+      height: 134px; }
+.contact_form .primary-btn {
+  background: #ffba00;
+  color: #fff;
+  margin-top: 20px;
+  border: none;
+  border-radius: 0; }
+
+/* Contact Success and error Area css
+============================================================================================ */
+.modal-message .modal-dialog {
+  position: absolute;
+  top: 36%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%) !important;
+  margin: 0px;
+  max-width: 500px;
+  width: 100%; }
+  .modal-message .modal-dialog .modal-content .modal-header {
+    text-align: center;
+    display: block;
+    border-bottom: none;
+    padding-top: 50px;
+    padding-bottom: 50px; }
+    .modal-message .modal-dialog .modal-content .modal-header .close {
+      position: absolute;
+      right: -15px;
+      top: -15px;
+      padding: 0px;
+      color: #fff;
+      opacity: 1;
+      cursor: pointer; }
+    .modal-message .modal-dialog .modal-content .modal-header h2 {
+      display: block;
+      text-align: center;
+      color: #ffba00;
+      padding-bottom: 10px;
+      font-family: "Roboto", sans-serif; }
+    .modal-message .modal-dialog .modal-content .modal-header p {
+      display: block; }
+
+/* End Contact Success and error Area css
+============================================================================================ */
+
+/*# sourceMappingURL=main.css.map */

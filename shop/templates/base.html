@@ -1,0 +1,325 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>{% if title %} {{ title }} {% else %} Django Online Shop {% endif %}</title>
+
+  <!-- jQery -->
+  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+
+  
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:500,800&display=swap" rel="stylesheet"> <!-- range slider -->
+
+  <!-- font awesome style -->
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"  />
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <!-- responsive style -->
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
+  {% block css %} {% endblock%}
+</head>
+
+<body>
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="header_top">
+        <div class="container-fluid">
+          <div class="top_nav_container">
+            <div class="contact_nav">
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>
+                  Gọi ngay :
+                </span>
+              </a>
+              {% comment %} <a href="">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>
+                  Email : demo@gmail.com
+                </span>
+              </a> {% endcomment %}
+            </div>
+            <form class="search_form" action="{% url 'shop:search' %}">
+              <input name="q" type="search" class="form-control form-control-dark" placeholder="Tìm kiếm..." aria-label="Search">
+              <button class="" type="submit">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
+            </form>
+            <div class="user_option_box">
+              <!-- favorite icon -->
+              <a href="{% url 'shop:favorites' %}">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+                <span>
+                  Yêu thích
+                </span>
+                  {% if request.user.is_authenticated %}
+                <div class="pop_up">  
+                  {{ request.user.get_likes_count}}
+                  <div class="pop_up_after"></div>
+                </div>
+              {% endif %}
+              </a>
+              
+              
+              <div class="dropdown text-end">
+                <a href="#" class="dropdown-toggle" id="dropdownUser1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" 
+                aria-expanded="true">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span class="caret">
+                  Tài Khoản
+                  </span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownUser1">
+                {% if request.user.is_authenticated %}
+                <!-- user profile dropdown -->
+                  <li><a href="{% url 'cart:show_cart' %}" <a class="dropdown-item">Giỏ hàng</a></li>
+                  <li><a href="{% url 'shop:favorites' %}" <a class="dropdown-item">Yêu thích</a></li>
+                  <li><a href="{% url 'orders:user_orders' %}" <a class="dropdown-item">Đơn hàng</a></li>
+                  <li><a class="dropdown-item" href="{% url 'accounts:edit_profile' %}">Thông tin</a></li>
+                  <li><a class="dropdown-item text-danger" href="{% url 'accounts:user_logout' %}">Đăng xuất</a></li>
+                </ul>
+              </div>
+              {% else %}
+              <!-- login, sign-up btn -->
+                <li><a href="{% url 'accounts:user_login' %}" class="dropdown-item">Đăng nhập</a></li>
+                <li><a href="{% url 'accounts:user_register' %}" class="dropdown-item">Đăng ký</a></li>
+              </div> 
+              {% endif %}
+              <!-- cart icon -->
+              <a href="{% url 'cart:show_cart' %}" class="cart-link">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <span>
+                  Giỏ hàng
+                </span>
+                {% if request.user.is_authenticated %}
+                <div class="pop_up">  
+                  {{ cart_count }}
+                  <div class="pop_up_after"></div>
+                </div>
+              {% endif %}
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <div class="navbar custom_nav-container navbar-expand-lg">
+            <a class="navbar-brand" href="{% url 'shop:home_page' %}">
+              <span>
+                SuccesS
+              </span>
+            </a>
+            <button class="navbar-toggler text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            {% comment %} <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+              <span class="navbar-toggler-icon"></span>
+            </button> {% endcomment %}
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'shop:home_page' %}">Trang chủ
+                    {% comment %} <span class="sr-only">(current)</span> {% endcomment %}
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'shop:product' %}">Sản phẩm</a>
+                </li>
+                <li class="nav-item dropdown category_dropdown"><a class="nav-link dropdown-toggle" id="contactMegamenu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nhãn hàng</a>
+                  <ul class="dropdown-menu dropdown-menu-end m-0" aria-labelledby="contactMegamenu">
+                    {% for category in categories %}
+                    <!-- check if category is parent -->
+                      {% if not category.is_sub %}
+                      <!-- parent -->
+                        <li><a href="{% url 'shop:filter_by_category' category.slug %}" class="dropdown-item text-uppercase">{{ category }}</a></li>
+                        {% for child in category.sub_categories.all %}
+                        <!-- child -->
+                        <li><a href="{% url 'shop:filter_by_category' child.slug %}" class="dropdown-item">{{ child }}</a></li>
+                        {% endfor %}
+                      {% endif %} 
+                    {% endfor %}
+                  </ul>
+                  {% comment %} <ul class="dropdown-menu dropdown-submenu m-0"> {% endcomment %}
+                    
+                    {% comment %} <li><a class="dropdown-item text-uppercase border-bottom" href="">Action </a></li>
+                    <li><a class="dropdown-item text-uppercase border-bottom" href="">Another action </a></li>
+                    <li><a class="dropdown-item text-uppercase border-bottom" href="">Application </a></li>
+                    <li><a class="dropdown-item text-uppercase border-bottom" href="">Something else here </a></li> {% endcomment %}
+                  {% comment %} </ul> {% endcomment %}
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'shop:about_us' %}">Về chúng tôi</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'shop:contact' %}">Liên hệ</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- end header section -->
+  
+    {% block slider %} {% endblock%}
+  <main class="container">
+    <div class="row mt-3">
+      <!-- messages -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+      <!-- content -->
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+  {% block extend_page %} {% endblock %}
+
+  {% block other_section %} {% endblock %}
+  
+  <!-- info section -->
+<section class="info_section ">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="info_contact">
+          <h5>
+            <a href="" class="navbar-brand">
+              <span>
+                SuccesS
+              </span>
+            </a>
+          </h5>
+          <p>
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            Viện công nghệ thông tin T3h
+          </p>
+          <p>
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            00000
+          </p>
+          <p>
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            SuccesSPhone@store.com
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="info_info">
+          <h5>
+            Giới thiệu
+          </h5>
+          <p>
+            Nhanh gọn, tiện lợi, dễ dàng, đơn giản là những tiêu chí hàng đầu của chúng tôi trong việc cung cấp những sản phẩm và dịch vụ đến
+            khách hàng.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3" style="padding-left: 5%">
+        <div class="info_links">
+          <h5>
+            Tiện ích
+          </h5>
+          <ul>
+            <li>
+              <a href="{% url 'shop:home_page' %}">
+                Trang chủ
+              </a>
+            </li>
+            <li>
+              <a href="">
+                Nhãn hàng
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'shop:product' %}">
+                Sản phẩm
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'shop:about_us' %}">
+                Về chúng tôi
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'shop:contact' %}">
+                Liên hệ
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="info_form ">
+          <h5>
+            Nhận thông tin mới nhất 
+          </h5>
+          <form action="">
+            <input type="email" placeholder="Điền email của bạn">
+            <button>
+              Đăng ký
+            </button>
+          </form>
+          <div class="social_box">
+            <a href="">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-youtube" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By Cong
+      </p>
+    </div>
+  </footer>
+  <!-- footer section -->
+  {% block script %} {% endblock %}
+  <!-- custom js -->
+  <script src="{% static 'js/custom.js' %}"></script>
+  <!-- poper js -->
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <!-- bootstrap js  -->
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+
+</body>
+
+</html>

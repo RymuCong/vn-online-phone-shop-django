@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/linearicons.css" %}">
+    <link rel="stylesheet" href="{% static "css/cart.css" %}">
+    
+{% endblock %}
+
+{% block extend_page %}
+
+ <!-- Start Banner Area -->
+ <section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1 style="font-size: 50px">Giỏ hàng mua sắm</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="{% url 'shop:home_page' %}">Trang chủ<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="">Giỏ hàng</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+
+    <!--================Cart Area =================-->
+<div id="body">
+    {% comment %} <form method="post" action="{% url 'cart:edit_cart' %}" enctype="multipart/form-data"> {% endcomment %}
+        {% csrf_token %}
+        <section class="cart_area">
+            <div class="container">
+                {% if cart_count != 0 %}
+                <div class="cart_inner">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><h3>Sản phẩm</h3></th>
+                                    <th scope="col"><h3>Giá</h3></th>
+                                    <th scope="col"><h3>Số lượng</h3></th>
+                                    <th scope="col"><h3>Tổng tiền</h3></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in cart %}
+                                <tr>
+                                    <td>
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <img width="145" height="auto"  src="{{ item.product.image.url }}" alt="">
+                                                <a style="color: black" href="{{ item.product.get_absolute_url }}"><h4 style="margin: 3rem">{{ item.product.title }}</h4></a>
+                                            </div> 
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h4>${{ item.price }}</h4>
+                                    </td>
+                                    <td>
+                                        <div class="product_count">
+                                            <h4>{{ item.quantity }}</h4>
+                                        </div>
+                                        {% comment %} <div class="product_count">
+                                            <input type="text" name="quantity" id="{{ item.product.id }}" maxlength="12" value="{{ item.quantity }}" title="Quantity:"
+                                                class="input-text">
+                                            <button onclick="var result = document.getElementById('{{ item.product.id }}'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                                class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                            <button onclick="var result = document.getElementById('{{ item.product.id }}'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                                class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                        </div> {% endcomment %}
+                                    </td>
+                                    <td>
+                                        <h4>${{ item.total_price }}</h4>
+                                    </td>
+                                    <td>
+                                        <a class="text-danger text-decoration-none" href="{% url 'cart:remove_from_cart' item.product.id %}"><h4>Xóa</h4></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            
+                
+                                <tr class="out_button_area">
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                    <td>
+                                        <div class="checkout_btn_inner d-flex align-items-center">
+                                            <a class="gray_btn" href="{% url 'shop:home_page' %}">Tiếp tục mua sắm</a>
+                                            <a class="primary-btn" href="{% url 'orders:create_order' %}">Thanh toán</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% else %}
+                <div class="col-md-12 text-center">
+                <br>
+                <h1 class="text-muted text-capitalize">Giỏ hàng trống..!</h1>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+    </form>
+    <!--================End Cart Area =================-->
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static "js/owl-carousel.js" %}"></script>
+
+{% endblock %}

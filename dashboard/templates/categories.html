@@ -1,0 +1,32 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+
+<table class="table table-striped ">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Ảnh</th>
+            <th scope="col">Tên</th>
+            {% comment %} <th scope="col">Phân Loại</th>
+            <th scope="col">Số lượng</th> {% endcomment %}
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    {% for category in categories %}
+    <tbody>
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ category.image }}</td>
+        <td>{{ category.title }}</td>
+        {% comment %} <td>{{ product.category }}</td> {% endcomment %}
+        {% comment %} <td>{{ product.date_created|date:"M d" }}</td> {% endcomment %}
+        <td><a class="text-danger text-decoration-none" href="{% url 'dashboard:delete_category' category.id %}">Xóa</a></td>
+        <td><a class="text-info text-decoration-none" href="{% url 'dashboard:edit_category' category.id %}">Sửa</a></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block extend_page %}
+
+<section class="py-5">
+    <div class="container py-4">
+      <div class="row gy-5">
+        <div class="col-lg-9">
+            <p class="lead mb-4">Đơn hàng #{{ order.id }} được tạo <strong>{{ order.created }}</strong> với trạng thái 
+                {% if order.status %}
+                    <strong class="text-success">Hoàn thành</strong>.
+                {% else %}
+                    <strong class="text-danger">Bị hủy</strong>.
+                {% endif %}
+            </p>
+          {% comment %} <p class="lead text-muted mb-5">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p> {% endcomment %}
+          <!-- ORDER TABLE-->
+          <div class="table-responsive">
+            <table class="table text-nowrap">
+              <thead>
+                <tr class="text-sm">
+                  <th class="border-gray-300 border-top py-4" colspan="2">Product</th>
+                  <th class="border-gray-300 border-top py-4">Quantity</th>
+                  <th class="border-gray-300 border-top py-4">Unit price</th>
+                  <th class="border-gray-300 border-top py-4">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in order.items.all %}
+                    <tr class="text-sm">
+                        <td class="align-middle border-gray-300 py-4"><a href="#"><img class="img-fluid flex-shrink-0" src="{{item.product.image.url}}" alt="White Blouse Armani" style="min-width: 50px" width="50"></a></td>
+                        <td class="align-middle border-gray-300 py-4"><a href="{{ item.product.get_absolute_url }}">{{item.product.title}}</a></td>
+                        <td class="align-middle border-gray-300 py-4">{{item.quantity}}</td>
+                        <td class="align-middle border-gray-300 py-4">${{item.price}}</td>
+                        <td class="align-middle border-gray-300 py-4">${{item.get_cost}}</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th class="text-end lead py-3" colspan="5">Phí vận chuyển</th>
+                  <th class="lead py-3">Miễn phí</th>
+                </tr>
+                {% comment %} <tr>
+                  <th class="text-end lead py-3" colspan="5">Thuế</th>
+                  <th class="lead py-3">$0.00</th>
+                </tr> {% endcomment %}
+                <tr>
+                  <th class="border-0 text-end lead py-3" colspan="5">Tổng tiền</th>
+                  <th class="border-0 lead py-3">${{ order.get_total_price }}</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <h3 class="h4 text-uppercase lined mb-4">Khách hàng</h3>
+          <nav class="nav flex-column nav-pills">
+                <a class="nav-link text-sm active" href="{% url "orders:user_orders" %}"> 
+                    <i class="me-2 fa fa-list"></i>
+                    <span>Đơn hàng</span>
+                </a>
+                <a class="nav-link text-sm" href="{% url "shop:favorites" %}"> 
+                    <i class="me-2 fa fa-heart"></i>
+                    <span>Yêu thích</span>
+                </a>
+                <a class="nav-link text-sm" href="{% url "accounts:edit_profile" %}"> 
+                    <i class="me-2 fa fa-user"></i>
+                    <span>Tài khoản</span>
+                </a>
+                <a class="nav-link text-sm" href="{% url "accounts:user_logout" %}"> 
+                    <i class="me-2 fa fa-sign-out"></i>
+                    <span>Đăng xuất</span>
+                </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
