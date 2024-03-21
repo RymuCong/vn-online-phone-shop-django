@@ -1,12 +1,4 @@
 # Simple Online Shop: Manage Products and Orders with Django
-![image](https://github.com/RymuCong/django-phone-online-shop/assets/95367118/5754bcdd-073a-4005-ac81-e08cab078c18)
-
-![image](https://github.com/RymuCong/django-phone-online-shop/assets/95367118/8db65d60-4de3-4a5f-aee8-d54a07ea9b45)
-
-![image](https://github.com/RymuCong/django-phone-online-shop/assets/95367118/a92c9ded-f7db-4253-8e31-4f0e05667b1d)
-
-![image](https://github.com/RymuCong/django-phone-online-shop/assets/95367118/d83891bc-1c67-4291-b1c4-71674c7985fb)
-
 
 This project is a simple but usable online shop written with Django. The app provides a custom dashboard to manage products and orders. Users can like a product, add it to the cart, and proceed to checkout. Order processing is supported, but the payment is handled using a fake pay system.
 
@@ -74,12 +66,3 @@ I welcome contributions to enhance and customize this project. If you would like
 5. Commit your changes and push them to your forked repository.
 6. Submit a pull request, clearly describing the changes you have made.
 
-## License
-
-released under the [MIT License](LICENSE). Feel free to use, modify, and distribute it as per the terms of the license.
-
-Feel free to explore, contribute, and customize this according to your needs!
-
-
-## App Preview
-![Peek 2022-01-09 19-15](https://user-images.githubusercontent.com/71011395/148689722-6ceacc8f-81b7-48e0-a258-9d4e543d1e7c.gif)
